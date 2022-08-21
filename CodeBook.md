@@ -15,7 +15,7 @@ Package dplyr is required for some transformations.
 
 ## tidy_data_mean
 
-Gets mean for every column grouped by the activity column.
+Gets mean for every column grouped by the activity and subject columns.
 This operation does not alter the column names.
 
 

@@ -1,9 +1,11 @@
 # load data
 test_data <- read.table("./UCI HAR Dataset/test/X_test.txt")
 test_labels <- read.table("./UCI HAR Dataset/test/y_test.txt")
+test_subject <- read.table("./UCI HAR Dataset/test/subject_test.txt")
 
 train_data <- read.table("./UCI HAR Dataset/train/X_train.txt")
 train_labels <- read.table("./UCI HAR Dataset/train/y_train.txt")
+train_subject <- read.table("./UCI HAR Dataset/train/subject_train.txt")
 
 data_col_names <- read.table("./UCI HAR Dataset/features.txt")
 label_map <- read.table("./UCI HAR Dataset/activity_labels.txt")
@@ -17,6 +19,9 @@ names(label_map) <- c("number","label_name")
 names(test_labels)<- "number"
 names(train_labels)<- "number"
 
+names(train_subject) <- "subject"
+names(test_subject) <- "subject"
+
 # create descriptive labels
 test_labels <- merge(x = test_labels, y = label_map, by = "number", all.x = TRUE)
 train_labels <- merge(x = train_labels, y = label_map, by = "number", all.x = TRUE)
@@ -24,8 +29,9 @@ train_labels <- merge(x = train_labels, y = label_map, by = "number", all.x = TR
 
 # 3. Uses descriptive activity names to name the activities in the data set
 test_data["activity"] <- test_labels["label_name"]
+test_data <- cbind(test_data,test_subject)
 train_data["activity"] <- train_labels["label_name"]
-
+train_data <- cbind(train_data,train_subject)
 
 # 1. Merges the training and the test sets to create one data set.
 merged_data <- rbind(test_data,train_data)
@@ -35,7 +41,7 @@ merged_data <- rbind(test_data,train_data)
 library(dplyr)
 tidy_data <- 
   merged_data %>%
-  select(matches("(mean\\(\\)$)|(std\\(\\)$)|activity"))
+  select(matches("(mean\\(\\)$)|(std\\(\\)$)|activity|subject"))
 
 
 # 5. From the data set in step 4, creates a second, independent tidy data set 
@@ -43,7 +49,7 @@ tidy_data <-
 # The required data set is "tidy_data" from step 2, since i did the tasks in a different order,
 tidy_data_means <- 
   tidy_data %>%
-  group_by(activity) %>%
+  group_by(activity,subject) %>%
   summarise(across(c(where(is.numeric)), mean)) %>%
   ungroup() %>%
   as.data.frame()
