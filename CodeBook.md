@@ -1,21 +1,36 @@
-# Code book for tidy datasets
+# Code book for the tidy dataset
 
 ## tidy_data
 
-tidy_data data set combines training and testing data sets,
-adds variable names to each columns and  adds an activity column. 
+The tidy_data data set contains summation of the original UCI data set.
 
-Columns containing values other than activity, mean and standard deviation
-are filtered out.
+Original data have been grouped by the activity and subject. And the average has been calculated over every column containing mean or standard deviation values.
 
-Columns ending with "mean()" contain mean. Columns ending with "std()" contain
-standard deviation.
+The resulting data set contains the following columns:
 
-Package dplyr is required for some transformations.
+- activity                    
+- subject                     
+- tBodyAccMag-mean()         
+- tBodyAccMag-std()           
+- tGravityAccMag-mean()       
+- tGravityAccMag-std()       
+- tBodyAccJerkMag-mean()      
+- tBodyAccJerkMag-std()       
+- tBodyGyroMag-mean()        
+- tBodyGyroMag-std()          
+- tBodyGyroJerkMag-mean()     
+- tBodyGyroJerkMag-std()     
+- fBodyAccMag-mean()          
+- fBodyAccMag-std()           
+- fBodyBodyAccJerkMag-mean() 
+- fBodyBodyAccJerkMag-std()   
+- fBodyBodyGyroMag-mean()     
+- fBodyBodyGyroMag-std()     
+- fBodyBodyGyroJerkMag-mean() 
+- fBodyBodyGyroJerkMag-std()
 
-## tidy_data_mean
+Be advised, that **all of the columns except activity and subject have been averaged**, the mean and std in the names indicate what values have been averaged.
 
-Gets mean for every column grouped by the activity and subject columns.
-This operation does not alter the column names.
+The acceleration signal from the smartphone accelerometer (Acc) X axis is measured in standard gravity units 'g'.
 
-
+The angular velocity vector measured by the gyroscope (Gyro) has units measured in radians/second.

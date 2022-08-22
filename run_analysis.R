@@ -1,4 +1,4 @@
-# load data
+# 0. Load data
 test_data <- read.table("./UCI HAR Dataset/test/X_test.txt")
 test_labels <- read.table("./UCI HAR Dataset/test/y_test.txt")
 test_subject <- read.table("./UCI HAR Dataset/test/subject_test.txt")
@@ -22,7 +22,6 @@ names(train_labels)<- "number"
 names(train_subject) <- "subject"
 names(test_subject) <- "subject"
 
-# create descriptive labels
 test_labels <- merge(x = test_labels, y = label_map, by = "number", all.x = TRUE)
 train_labels <- merge(x = train_labels, y = label_map, by = "number", all.x = TRUE)
 
@@ -47,7 +46,7 @@ tidy_data <-
 # 5. From the data set in step 4, creates a second, independent tidy data set 
 #    with the average of each variable for each activity and each subject.
 # The required data set is "tidy_data" from step 2, since i did the tasks in a different order,
-tidy_data_means <- 
+tidy_data <- 
   tidy_data %>%
   group_by(activity,subject) %>%
   summarise(across(c(where(is.numeric)), mean)) %>%
