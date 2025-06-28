@@ -1,5 +1,7 @@
 # Getting and Cleaning Data Course Project
 
+This project is a part of Coursera course [Getting and Cleaning Data](https://www.coursera.org/learn/data-cleaning).
+
 ## The files
 
 **run_analysis.R** - contains the data transformations. After running the code 
