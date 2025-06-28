@@ -1,6 +1,6 @@
 # Getting and Cleaning Data Course Project
 
-This project is a part of Coursera course [Getting and Cleaning Data](https://www.coursera.org/learn/data-cleaning).
+This project is a part of Coursera course [Getting and Cleaning Data](https://www.coursera.org/learn/data-cleaning) with [certificate](https://coursera.org/share/78ae8ba7748d312f2518f6281b628e54).
 
 ## The files
 
